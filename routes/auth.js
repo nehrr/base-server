@@ -40,6 +40,7 @@ api.post('/login', (req, res) => {
       }
 
       const { uuid, nickname, email } = user.toJSON();
+      const payload = { uuid: user.uuid, nickname, email };
       const token = jwt.sign(payload, process.env.JWT_ENCRYPTION);
       res.status(200).json({ data: { user: { uuid, nickname, email } }, meta: { token } });
     },
